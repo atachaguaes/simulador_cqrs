@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Dominio.Entities.Credito>
+
+@{
+    ViewData["Title"] = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+  <div class="card-header">
+    <h4>Lista de Creditos</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+        <div class="col-12">
+            <a class="btn btn-success" href="@Url.Action("NuevoCredito","SimuladorCredito")">Crear Nuevo</a>
+        </div>
+    </div>
+    <hr />
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Fecha desembolso</th>
+                <th>Fecha primera cuota</th>
+                <th>Dia de pago</th>
+                <th>Monto</th>
+                <th>Cuotas</th>
+                <th>Tasa anual</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.DNI</td>
+                <td>@item.FechaDesembolso.ToShortDateString()</td>
+                <td>@item.FechaPrimeraCuota.ToShortDateString()</td>
+                <td>@item.DiaPago</td>
+                <td>@item.Monto</td>
+                <td>@item.Cuotas</td>
+                <td>@item.TasaAnual</td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="@Url.Action("Modificar","SimuladorCredito", new { idCredito=item.IdCredito })">Modificar</a>
+                    <a class="btn btn-danger btn-sm" href="@Url.Action("Eliminar","SimuladorCredito", new { idCredito=item.IdCredito })">Eliminar</a>
+                    <a class="btn btn-info btn-sm" href="@Url.Action("ObtenerCreditoPorId","SimuladorCredito", new { id=item.IdCredito })">Detalles</a>
+                </td>
+            </tr>
+            }
+
+        </tbody>
+    </table>
+    </div>
+  </div>
+</div>

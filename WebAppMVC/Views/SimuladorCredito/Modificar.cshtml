@@ -1,0 +1,53 @@
+﻿@model Dominio.Entities.Credito
+
+@{
+    ViewData["Title"] = "Modificar Credito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+  <div class="card-header">
+    <h4>Modificar Credito</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+        <div class="col-sm-3">
+            <form method="post" action="@Url.Action("Modificar","SimuladorCredito")">
+                    <input type="hidden" name="IdCredito" value="@Model.IdCredito"/>
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" class="form-control" name="DNI" value="@Model.DNI"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha desembolso</label>
+                        <input type="text" class="form-control" name="FechaDesembolso" value="@Model.FechaDesembolso" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha primera cuota</label>
+                        <input type="text" class="form-control" name="FechaPrimeraCuota" value="@Model.FechaPrimeraCuota" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Dia pago</label>
+                        <input type="text" class="form-control" name="DiaPago" value="@Model.DiaPago"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Monto</label>
+                        <input type="text" class="form-control" name="Monto" value="@Model.Monto"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Cuotas</label>
+                        <input type="text" class="form-control" name="Cuotas" value="@Model.Cuotas"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tasa anual</label>
+                        <input type="text" class="form-control" name="TasaAnual" value="@Model.TasaAnual"/>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Generar</button>
+                    <a class="btn btn-warning" href="@Url.Action("Index","SimuladorCredito")">Cancelar</a>
+
+                </form>
+        </div>
+    </div>
+  </div>
+</div>

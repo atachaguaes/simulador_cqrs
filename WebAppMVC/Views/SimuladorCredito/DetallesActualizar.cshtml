@@ -1,0 +1,90 @@
+﻿@model Dominio.Entities.Credito
+
+@{
+    ViewData["Title"] = "Actualizar Credito";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card">
+  <div class="card-header">
+    <h4>Actualizar Credito</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+       <form method="post" action="@Url.Action("Actualizar","SimuladorCredito")">
+            <div class="row">
+                <div class="col-sm-3">
+                    <input type="hidden" name="TasaDiaria" value="@Model.TasaDiaria"/>
+                    <input type="hidden" name="TasaMensual" value="@Model.TasaMensual"/>
+                    <input type="hidden" name="IdCredito" value="@Model.IdCredito"/>
+                    <div class="form-group">
+                        <label>DNI</label>
+                        <input type="text" class="form-control" name="DNI" value="@Model.DNI" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha desembolso</label>
+                        <input type="text" class="form-control" name="FechaDesembolso" value="@Model.FechaDesembolso" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Fecha primera cuota</label>
+                        <input type="text" class="form-control" name="FechaPrimeraCuota" value="@Model.FechaPrimeraCuota" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Dia pago</label>
+                        <input type="text" class="form-control" name="DiaPago" value="@Model.DiaPago" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Monto</label>
+                        <input type="text" class="form-control" name="Monto" value="@Model.Monto" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Cuotas</label>
+                        <input type="text" class="form-control" name="Cuotas" value="@Model.Cuotas" readonly="readonly"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Tasa anual</label>
+                        <input type="text" class="form-control" name="TasaAnual" value="@Model.TasaAnual" readonly="readonly"/>
+                    </div>
+                    <br />
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                    <a class="btn btn-warning" href="@Url.Action("Index","SimuladorCredito")">Cancelar</a>
+                </div>
+                <div class="col-sm-9">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Nro</th>
+                                    <th>Fecha cuota</th>
+                                    <th>Dias cuota</th>
+                                    <th>Saldo capital</th>
+                                    <th>Capital</th>
+                                    <th>Interes</th>
+                                    <th>Cuota</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.Detalles)
+                                {
+                                    <tr>
+                                        <td>@item.Item</td>
+                                        <td>@item.FechaCuota.ToShortDateString()</td>
+                                        <td>@item.DiasCouta</td>
+                                        <td>@item.SaldoCapital</td>
+                                        <td>@item.Capital</td>
+                                        <td>@item.Interes</td>
+                                        <td>@item.Cuota</td>
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
